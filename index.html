@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generador de Cuadrantes de Turnos</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Generador de Cuadrantes de Turnos</h1>
+  </header>
+
+  <main>
+    <!-- Panel de configuracion -->
+    <section class="panel" id="config-panel">
+      <h2>Configuracion</h2>
+
+      <div class="config-group">
+        <h3>Periodo</h3>
+        <div class="form-row">
+          <label>Mes
+            <input type="month" id="month-picker" />
+          </label>
+        </div>
+      </div>
+
+      <div class="config-group">
+        <h3>Turnos</h3>
+        <div id="shifts-list"></div>
+        <button class="btn btn-secondary" id="add-shift-btn">+ Anadir turno</button>
+      </div>
+
+      <div class="config-group">
+        <h3>Empleados</h3>
+        <div id="employees-list"></div>
+        <button class="btn btn-secondary" id="add-employee-btn">+ Anadir empleado</button>
+      </div>
+
+      <div class="config-group">
+        <h3>Reglas</h3>
+        <label class="checkbox-label">
+          <input type="checkbox" id="rule-no-consecutive" checked />
+          Evitar mas de 5 dias consecutivos
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="rule-balance" checked />
+          Distribuir turnos equitativamente
+        </label>
+        <div class="form-row">
+          <label>Dias libres por empleado/mes
+            <input type="number" id="days-off" value="8" min="0" max="20" />
+          </label>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" id="generate-btn">Generar cuadrante</button>
+    </section>
+
+    <!-- Vista del cuadrante -->
+    <section class="panel" id="schedule-panel">
+      <div class="schedule-header">
+        <h2 id="schedule-title">Cuadrante</h2>
+        <div class="schedule-actions">
+          <button class="btn btn-secondary" id="print-btn">Imprimir</button>
+          <button class="btn btn-secondary" id="export-csv-btn">Exportar CSV</button>
+        </div>
+      </div>
+
+      <div class="legend" id="legend"></div>
+
+      <div class="table-wrapper">
+        <table id="schedule-table">
+          <thead id="schedule-thead"></thead>
+          <tbody id="schedule-tbody"></tbody>
+        </table>
+      </div>
+
+      <div class="summary" id="summary"></div>
+    </section>
+  </main>
+
+  <!-- Modal para editar celda -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Editar turno</h3>
+      <p id="modal-info"></p>
+      <div id="modal-options"></div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" id="modal-cancel">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
